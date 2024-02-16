@@ -1,7 +1,8 @@
-import { getWeather } from "./API";
+import { getWeather, getForecast } from "./API";
 import { format, parseISO } from "date-fns";
 
 let defaultWeather = await getWeather("flagstaff");
+let defaultForecast = await getForecast("flagstaff");
 
 const weatherElements = {
   currentConditions: document.querySelector(".current-conditions"),
