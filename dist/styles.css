@@ -2,11 +2,16 @@ html,
 body {
   margin: 0;
   height: 100%;
+  color: white;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  background-image: url(images/painting-mountain-lake-with-mountain-background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .top-content {
