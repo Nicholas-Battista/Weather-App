@@ -13,6 +13,7 @@ function displayForcast(forecastData) {
     card.appendChild(appendDayofWeek(day.date));
     card.appendChild(appendAvgTemp(day.day.avgtemp_f));
     card.appendChild(appendLowTemp(day.day.mintemp_f));
+    card.appendChild(appendIcon(day.day.condition.icon));
 
     forecastContainer.appendChild(card);
   });
@@ -39,6 +40,12 @@ function appendLowTemp(lowTemp) {
   lowTempElement.classList.add("lowTemp");
   lowTempElement.textContent = lowTemp;
   return lowTempElement;
+}
+
+function appendIcon(iconPath) {
+  const icon = document.createElement("img");
+  icon.src = iconPath;
+  return icon;
 }
 
 displayForcast(defaultForecast);
