@@ -1,4 +1,5 @@
 import { getWeather } from "./API";
+import { format, parseISO } from "date-fns";
 
 let defaultWeather = await getWeather("new york city");
 
@@ -12,7 +13,12 @@ const location = document.querySelector(".location");
 location.textContent = defaultWeather.location.name;
 
 const date = document.querySelector(".date");
-date.textContent = defaultWeather.location.localtime;
+const unformattedDate = defaultWeather.location.localtime;
+const dateObject = parseISO(unformattedDate);
+const formattedDate = format(dateObject, "eeee, do MMM ''yy h:mm a");
+console.log(formattedDate);
+
+date.textContent = formattedDate;
 
 export default currentConditions;
 
