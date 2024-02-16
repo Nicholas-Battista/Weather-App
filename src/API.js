@@ -1,13 +1,11 @@
-async function getWeather() {
-  const weatherData = await fetch(
-    "https://api.weatherapi.com/v1/current.json?key=816471dde35e41b9b0a62442241202&q=flagstaff",
+async function getWeather(location) {
+  const data = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=816471dde35e41b9b0a62442241202&q=${location}`,
     { mode: "cors" }
   );
-
-  const flagstaffData = await weatherData.json();
-  console.log(flagstaffData);
+  const WeatherData = await data.json();
+  console.log(WeatherData);
+  return WeatherData;
 }
 
-getWeather();
-
-export default getWeather;
+export { getWeather };
