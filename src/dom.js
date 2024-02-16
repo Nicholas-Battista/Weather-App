@@ -8,6 +8,11 @@ const weatherElements = {
   currentTemp: document.querySelector(".current-temp"),
   location: document.querySelector(".location"),
   date: document.querySelector(".date"),
+
+  feelsLike: document.querySelector(".feel"),
+  humid: document.querySelector(".humid"),
+  precip: document.querySelector(".chance-of-prep"),
+  wind: document.querySelector(".wind"),
 };
 
 function displayWeatherData(weatherData) {
@@ -17,6 +22,11 @@ function displayWeatherData(weatherData) {
   weatherElements.currentTemp.textContent = weatherData.current.temp_f;
 
   weatherElements.location.textContent = weatherData.location.name;
+
+  weatherElements.feelsLike.textContent = weatherData.current.feelslike_f;
+  weatherElements.humid.textContent = weatherData.current.humidity;
+  // weatherElements.precip.textContent = weatherData.current.
+  weatherElements.wind.textContent = weatherData.current.wind_mph;
 
   formateDate(weatherData);
 }
