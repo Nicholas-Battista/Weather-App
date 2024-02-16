@@ -9,6 +9,7 @@ const weatherElements = {
   currentTemp: document.querySelector(".current-temp"),
   location: document.querySelector(".location"),
   date: document.querySelector(".date"),
+  icon: document.querySelector(".todays-icon"),
 
   feelsLike: document.querySelector(".feel"),
   humid: document.querySelector(".humid"),
@@ -28,6 +29,8 @@ function displayWeatherData(weatherData) {
   weatherElements.humid.textContent = weatherData.current.humidity;
   // weatherElements.precip.textContent = weatherData.current.
   weatherElements.wind.textContent = weatherData.current.wind_mph;
+
+  weatherElements.icon.src = weatherData.current.condition.icon;
 
   formateDate(weatherData);
 }
