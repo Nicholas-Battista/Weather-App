@@ -23,6 +23,7 @@ body {
 .top-content {
   display: flex;
   justify-content: space-between;
+  height: 50%;
 }
 
 .top-content div {
@@ -44,6 +45,7 @@ body {
 .forecast {
   display: flex;
   justify-content: space-between;
+  padding: 0 2rem;
 }
 
 .daily-card {
@@ -51,4 +53,7 @@ body {
   width: 10%;
   border-radius: 1rem;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
