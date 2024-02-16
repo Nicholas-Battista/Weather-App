@@ -3,3 +3,29 @@ body {
   margin: 0;
   height: 100%;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-content div {
+  width: 30%;
+}
+
+.mid-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-content {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}

@@ -21,7 +21,7 @@ function displayWeatherData(weatherData) {
 
   weatherElements.currentTemp.textContent = weatherData.current.temp_f;
 
-  weatherElements.location.textContent = weatherData.location.name;
+  weatherElements.location.textContent = `${weatherData.location.name}, ${weatherData.location.region}`;
 
   weatherElements.feelsLike.textContent = weatherData.current.feelslike_f;
   weatherElements.humid.textContent = weatherData.current.humidity;
