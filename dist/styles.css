@@ -4,6 +4,7 @@ body {
   height: 100%;
   color: white;
   overflow-y: auto;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -24,17 +25,33 @@ body {
 .top-content {
   display: flex;
   justify-content: space-between;
-  height: 50%;
+  height: 40%;
 }
 
 .top-content div {
-  width: 30%;
+  width: 20%;
+}
+
+.left-content {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  height: 75%;
+  border-radius: 0 1rem 10rem 0;
+  box-shadow: var(--shadow);
 }
 
 .mid-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.right-content {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  height: 75%;
+  border-radius: 1rem 0 0rem 10rem;
+  box-shadow: var(--shadow);
 }
 
 input {
@@ -64,7 +81,7 @@ input::placeholder {
   flex-wrap: wrap;
   align-items: center;
   padding: 0 2rem;
-  gap: 1rem;
+  gap: 4rem;
 }
 
 .daily-card,

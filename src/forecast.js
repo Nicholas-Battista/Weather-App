@@ -5,6 +5,7 @@ let defaultForecast = await getForecast("flagstaff");
 
 function displayDailyForcast(forecastData) {
   const forecastContainer = document.querySelector(".forecast");
+  forecastContainer.innerHTML = "";
   forecastData.forecast.forecastday.slice(1).forEach((day) => {
     console.log(day);
     const card = document.createElement("div");
@@ -106,6 +107,25 @@ document.querySelector(".hourly").addEventListener("click", () => {
   forecastContainer.innerHTML = "";
   displayHourlyForecast(defaultForecast);
 });
+
+document.getElementById("search").addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    getSearchedLocation(document.getElementById("search").value).then(
+      (data) => {
+        displayDailyForcast(data);
+        document.querySelector(".hourly").addEventListener("click", () => {
+          const forecastContainer = document.querySelector(".forecast");
+          forecastContainer.innerHTML = "";
+          displayHourlyForecast(data);
+        });
+      }
+    );
+  }
+});
+
+async function getSearchedLocation(value) {
+  return await getForecast(value);
+}
 
 displayDailyForcast(defaultForecast);
 // displayHourlyForecast(defaultForecast);
