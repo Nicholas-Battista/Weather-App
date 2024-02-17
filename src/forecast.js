@@ -54,12 +54,15 @@ function displayHourlyForecast(forecastData) {
     forecastData.location.localtime.split(" ")[1].slice(0, -3)
   );
   console.log(currentTime);
-
+  let counter = 23;
   const today = forecastData.forecast.forecastday[0].hour;
+  const nextDay = forecastData.forecast.forecastday[1].hour;
   console.log(today);
 
-  for (let i = currentTime + 1; i <= today.length; i++) {
+  for (let i = currentTime + 1; i <= today.length - 1; i++) {
+    counter--;
     const hour = today[i];
+    console.log(hour);
     const hourCard = document.createElement("div");
     hourCard.classList.add("card-hour");
 
@@ -69,8 +72,31 @@ function displayHourlyForecast(forecastData) {
     const temp = document.createElement("p");
     temp.textContent = hour.temp_f;
 
+    const icon = document.createElement("img");
+    icon.src = hour.condition.icon;
+
     hourCard.appendChild(condition);
     hourCard.appendChild(temp);
+    hourCard.appendChild(icon);
+    forecastContainer.appendChild(hourCard);
+  }
+  for (let i = 0; i <= counter; i++) {
+    const hour = nextDay[i];
+    const hourCard = document.createElement("div");
+    hourCard.classList.add("card-hour");
+
+    const condition = document.createElement("p");
+    condition.textContent = hour.condition.text;
+
+    const temp = document.createElement("p");
+    temp.textContent = hour.temp_f;
+
+    const icon = document.createElement("img");
+    icon.src = hour.condition.icon;
+
+    hourCard.appendChild(condition);
+    hourCard.appendChild(temp);
+    hourCard.appendChild(icon);
     forecastContainer.appendChild(hourCard);
   }
 }

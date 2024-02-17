@@ -61,6 +61,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
+  overflow-x: scroll;
 }
 
 .daily-card {
