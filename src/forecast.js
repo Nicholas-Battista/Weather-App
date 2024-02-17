@@ -3,9 +3,9 @@ import { format, parseISO } from "date-fns";
 
 let defaultForecast = await getForecast("flagstaff");
 
-function displayForcast(forecastData) {
+function displayDailyForcast(forecastData) {
   const forecastContainer = document.querySelector(".forecast");
-  forecastData.forecast.forecastday.forEach((day) => {
+  forecastData.forecast.forecastday.slice(1).forEach((day) => {
     console.log(day);
     const card = document.createElement("div");
     card.classList.add("daily-card");
@@ -48,6 +48,40 @@ function appendIcon(iconPath) {
   return icon;
 }
 
-displayForcast(defaultForecast);
+function displayHourlyForecast(forecastData) {
+  const forecastContainer = document.querySelector(".forecast");
+  const currentTime = parseInt(
+    forecastData.location.localtime.split(" ")[1].slice(0, -3)
+  );
+  console.log(currentTime);
 
-export default displayForcast;
+  const today = forecastData.forecast.forecastday[0].hour;
+  console.log(today);
+
+  for (let i = currentTime + 1; i <= today.length; i++) {
+    const hour = today[i];
+    const hourCard = document.createElement("div");
+    hourCard.classList.add("card-hour");
+
+    const condition = document.createElement("p");
+    condition.textContent = hour.condition.text;
+
+    const temp = document.createElement("p");
+    temp.textContent = hour.temp_f;
+
+    hourCard.appendChild(condition);
+    hourCard.appendChild(temp);
+    forecastContainer.appendChild(hourCard);
+  }
+}
+
+document.querySelector(".hourly").addEventListener("click", () => {
+  const forecastContainer = document.querySelector(".forecast");
+  forecastContainer.innerHTML = "";
+  displayHourlyForecast(defaultForecast);
+});
+
+displayDailyForcast(defaultForecast);
+// displayHourlyForecast(defaultForecast);
+
+export default displayDailyForcast;

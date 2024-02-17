@@ -1,3 +1,3 @@
 import { getWeather } from "./API";
 import displayWeatherData from "./dom";
-import displayForcast from "./forecast";
+import displayDailyForcast from "./forecast";
