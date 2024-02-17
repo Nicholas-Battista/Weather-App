@@ -3,6 +3,7 @@ body {
   margin: 0;
   height: 100%;
   color: white;
+  overflow-y: auto;
 }
 
 :root {
@@ -59,14 +60,17 @@ input::placeholder {
 
 .forecast {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
   padding: 0 2rem;
-  overflow-x: scroll;
+  gap: 1rem;
 }
 
-.daily-card {
+.daily-card,
+.card-hour {
   backdrop-filter: blur(10px);
-  width: 12%;
+  width: 200px;
   border-radius: 1rem;
   box-shadow: var(--shadow);
   display: flex;
