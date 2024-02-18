@@ -56,12 +56,6 @@ async function getSearchedLocation(value) {
   return await getWeather(value);
 }
 
-document.querySelector(".daily").addEventListener("click", () => {
-  const forecastContainer = document.querySelector(".forecast");
-  forecastContainer.innerHTML = "";
-  displayWeatherData(defaultWeather);
-});
-
 displayWeatherData(defaultWeather);
 
 export default displayWeatherData;

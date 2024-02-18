@@ -108,6 +108,12 @@ document.querySelector(".hourly").addEventListener("click", () => {
   displayHourlyForecast(defaultForecast);
 });
 
+document.querySelector(".daily").addEventListener("click", () => {
+  const forecastContainer = document.querySelector(".forecast");
+  forecastContainer.innerHTML = "";
+  displayDailyForcast(defaultForecast);
+});
+
 document.getElementById("search").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     getSearchedLocation(document.getElementById("search").value).then(
@@ -117,6 +123,11 @@ document.getElementById("search").addEventListener("keypress", (event) => {
           const forecastContainer = document.querySelector(".forecast");
           forecastContainer.innerHTML = "";
           displayHourlyForecast(data);
+        });
+        document.querySelector(".daily").addEventListener("click", () => {
+          const forecastContainer = document.querySelector(".forecast");
+          forecastContainer.innerHTML = "";
+          displayDailyForcast(data);
         });
       }
     );
