@@ -13,8 +13,8 @@ function displayDailyForcast(forecastData) {
     card.classList.add("daily-card");
 
     card.appendChild(appendDayofWeek(day.date));
-    card.appendChild(appendAvgTemp(day.day.avgtemp_f));
-    card.appendChild(appendLowTemp(day.day.mintemp_f));
+    card.appendChild(appendAvgTemp(determineMeasurementDailyAvg(day)));
+    card.appendChild(appendLowTemp(determineMeasurementDailyMin(day)));
     card.appendChild(appendIcon(day.day.condition.icon));
 
     forecastContainer.appendChild(card);
@@ -55,11 +55,9 @@ function displayHourlyForecast(forecastData) {
   const currentTime = parseInt(
     forecastData.location.localtime.split(" ")[1].slice(0, -3)
   );
-  console.log(currentTime);
   let counter = 23;
   const today = forecastData.forecast.forecastday[0].hour;
   const nextDay = forecastData.forecast.forecastday[1].hour;
-  console.log(today);
 
   for (let i = currentTime + 1; i <= today.length - 1; i++) {
     counter--;
@@ -75,7 +73,8 @@ function displayHourlyForecast(forecastData) {
     condition.textContent = hour.condition.text;
 
     const temp = document.createElement("p");
-    temp.textContent = hour.temp_f + " °F";
+    temp.textContent =
+      determineMeasurement(hour)[0] + determineMeasurement(hour)[1];
 
     const icon = document.createElement("img");
     icon.src = hour.condition.icon;
@@ -98,7 +97,8 @@ function displayHourlyForecast(forecastData) {
     condition.textContent = hour.condition.text;
 
     const temp = document.createElement("p");
-    temp.textContent = hour.temp_f + " °F";
+    temp.textContent =
+      determineMeasurement(hour)[0] + determineMeasurement(hour)[1];
 
     const icon = document.createElement("img");
     icon.src = hour.condition.icon;
@@ -159,8 +159,63 @@ document.getElementById("search").addEventListener("keypress", (event) => {
   }
 });
 
-async function getSearchedLocation(value) {
-  return await getForecast(value);
+let measurementFlags = {
+  f: true,
+  c: false,
+};
+
+document.querySelector(".f").addEventListener("click", () => {
+  measurementFlags.f = true;
+  measurementFlags.c = false;
+  const forecastContainer = document.querySelector(".forecast");
+  forecastContainer.innerHTML = "";
+  determineRerun();
+});
+
+document.querySelector(".c").addEventListener("click", () => {
+  measurementFlags.f = false;
+  measurementFlags.c = true;
+  const forecastContainer = document.querySelector(".forecast");
+  forecastContainer.innerHTML = "";
+  determineRerun();
+});
+
+function determineMeasurement(hour) {
+  if (measurementFlags.f) {
+    const f = [hour.temp_f, " °F"];
+    return f;
+  } else {
+    const c = [hour.temp_c, " °C"];
+    return c;
+  }
+}
+
+function determineMeasurementDailyAvg(day) {
+  if (measurementFlags.f) {
+    const f = day.day.avgtemp_f + " °F";
+    return f;
+  } else {
+    const c = day.day.avgtemp_c + " °C";
+    return c;
+  }
+}
+
+function determineMeasurementDailyMin(day) {
+  if (measurementFlags.f) {
+    const f = day.day.mintemp_f + " °F";
+    return f;
+  } else {
+    const c = day.day.mintemp_c + " °C";
+    return c;
+  }
+}
+
+function determineRerun() {
+  if (document.querySelector(".hourly").classList.contains("is-active")) {
+    return displayHourlyForecast(previousCast);
+  } else {
+    return displayDailyForcast(previousCast);
+  }
 }
 
 displayDailyForcast(defaultForecast);
