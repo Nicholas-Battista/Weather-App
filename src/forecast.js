@@ -168,8 +168,13 @@ let measurementFlags = {
 document.querySelector(".f").addEventListener("click", () => {
   measurementFlags.f = true;
   measurementFlags.c = false;
+
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+
+  document.querySelector(".f").classList.add("is-active");
+  document.querySelector(".c").classList.remove("is-active");
+
   displayWeatherData(previousCast);
   determineRerun();
 });
@@ -177,8 +182,13 @@ document.querySelector(".f").addEventListener("click", () => {
 document.querySelector(".c").addEventListener("click", () => {
   measurementFlags.f = false;
   measurementFlags.c = true;
+
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+
+  document.querySelector(".f").classList.remove("is-active");
+  document.querySelector(".c").classList.add("is-active");
+
   displayWeatherData(previousCast);
   determineRerun();
 });
