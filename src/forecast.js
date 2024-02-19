@@ -2,6 +2,7 @@ import { getForecast } from "./API";
 import { format, parseISO } from "date-fns";
 
 let defaultForecast = await getForecast("flagstaff");
+let previousCast = defaultForecast;
 
 function displayDailyForcast(forecastData) {
   const forecastContainer = document.querySelector(".forecast");
@@ -115,6 +116,9 @@ document.querySelector(".hourly").addEventListener("click", () => {
   document.querySelector(".hourly").classList.add("is-active");
   document.querySelector(".daily").classList.remove("is-active");
   forecastContainer.classList.add("hourlyForecast");
+
+  document.querySelector(".current").textContent = "Hourly Forecast ";
+
   displayHourlyForecast(defaultForecast);
 });
 
@@ -124,14 +128,19 @@ document.querySelector(".daily").addEventListener("click", () => {
   document.querySelector(".daily").classList.add("is-active");
   document.querySelector(".hourly").classList.remove("is-active");
   forecastContainer.classList.remove("hourlyForecast");
+
+  document.querySelector(".current").textContent = "Daily Forecast ";
   displayDailyForcast(defaultForecast);
 });
 
 document.getElementById("search").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
-    getSearchedLocation(document.getElementById("search").value).then(
-      (data) => {
+    const errmsg = document.querySelector(".errMsg");
+    errmsg.textContent = "";
+    getForecast(document.getElementById("search").value)
+      .then((data) => {
         displayDailyForcast(data);
+        previousCast = data;
         document.querySelector(".hourly").addEventListener("click", () => {
           const forecastContainer = document.querySelector(".forecast");
           forecastContainer.innerHTML = "";
@@ -142,8 +151,11 @@ document.getElementById("search").addEventListener("keypress", (event) => {
           forecastContainer.innerHTML = "";
           displayDailyForcast(data);
         });
-      }
-    );
+      })
+      .catch(() => {
+        errmsg.textContent = "Please enter a valid city";
+        displayDailyForcast(previousCast);
+      });
   }
 });
 
@@ -152,6 +164,7 @@ async function getSearchedLocation(value) {
 }
 
 displayDailyForcast(defaultForecast);
+document.querySelector(".current").textContent = "Daily Forecast ";
 // displayHourlyForecast(defaultForecast);
 
 export default displayDailyForcast;
