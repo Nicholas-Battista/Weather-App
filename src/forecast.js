@@ -107,6 +107,7 @@ document.querySelector(".hourly").addEventListener("click", () => {
   forecastContainer.innerHTML = "";
   document.querySelector(".hourly").classList.add("is-active");
   document.querySelector(".daily").classList.remove("is-active");
+  forecastContainer.classList.add("hourlyForecast");
   displayHourlyForecast(defaultForecast);
 });
 
@@ -115,6 +116,7 @@ document.querySelector(".daily").addEventListener("click", () => {
   forecastContainer.innerHTML = "";
   document.querySelector(".daily").classList.add("is-active");
   document.querySelector(".hourly").classList.remove("is-active");
+  forecastContainer.classList.remove("hourlyForecast");
   displayDailyForcast(defaultForecast);
 });
 
