@@ -105,12 +105,16 @@ function displayHourlyForecast(forecastData) {
 document.querySelector(".hourly").addEventListener("click", () => {
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+  document.querySelector(".hourly").classList.add("is-active");
+  document.querySelector(".daily").classList.remove("is-active");
   displayHourlyForecast(defaultForecast);
 });
 
 document.querySelector(".daily").addEventListener("click", () => {
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+  document.querySelector(".daily").classList.add("is-active");
+  document.querySelector(".hourly").classList.remove("is-active");
   displayDailyForcast(defaultForecast);
 });
 
