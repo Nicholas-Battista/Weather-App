@@ -67,15 +67,19 @@ function displayHourlyForecast(forecastData) {
     const hourCard = document.createElement("div");
     hourCard.classList.add("card-hour");
 
+    const time = document.createElement("p");
+    time.textContent = format(new Date().setHours(i), "ha");
+
     const condition = document.createElement("p");
     condition.textContent = hour.condition.text;
 
     const temp = document.createElement("p");
-    temp.textContent = hour.temp_f;
+    temp.textContent = hour.temp_f + " °F";
 
     const icon = document.createElement("img");
     icon.src = hour.condition.icon;
 
+    hourCard.appendChild(time);
     hourCard.appendChild(condition);
     hourCard.appendChild(temp);
     hourCard.appendChild(icon);
@@ -86,15 +90,18 @@ function displayHourlyForecast(forecastData) {
     const hourCard = document.createElement("div");
     hourCard.classList.add("card-hour");
 
+    const time = document.createElement("p");
+    time.textContent = format(new Date().setHours(i), "ha");
+
     const condition = document.createElement("p");
     condition.textContent = hour.condition.text;
 
     const temp = document.createElement("p");
-    temp.textContent = hour.temp_f;
+    temp.textContent = hour.temp_f + " °F";
 
     const icon = document.createElement("img");
     icon.src = hour.condition.icon;
-
+    hourCard.appendChild(time);
     hourCard.appendChild(condition);
     hourCard.appendChild(temp);
     hourCard.appendChild(icon);
