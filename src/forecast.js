@@ -1,5 +1,6 @@
 import { getForecast } from "./API";
 import { format, parseISO } from "date-fns";
+import displayWeatherData from "./dom";
 
 let defaultForecast = await getForecast("flagstaff");
 let previousCast = defaultForecast;
@@ -169,6 +170,7 @@ document.querySelector(".f").addEventListener("click", () => {
   measurementFlags.c = false;
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+  displayWeatherData(previousCast);
   determineRerun();
 });
 
@@ -177,6 +179,7 @@ document.querySelector(".c").addEventListener("click", () => {
   measurementFlags.c = true;
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
+  displayWeatherData(previousCast);
   determineRerun();
 });
 
@@ -223,3 +226,4 @@ document.querySelector(".current").textContent = "Daily Forecast ";
 // displayHourlyForecast(defaultForecast);
 
 export default displayDailyForcast;
+export { measurementFlags };

@@ -1,8 +1,10 @@
 import { getWeather, getForecast } from "./API";
 import { format, parseISO } from "date-fns";
 import displayForcast from "./forecast";
+import { measurementFlags } from "./forecast";
 
 let defaultWeather = await getWeather("flagstaff");
+let degrees;
 
 const weatherElements = {
   currentConditions: document.querySelector(".current-conditions"),
@@ -18,10 +20,16 @@ const weatherElements = {
 };
 
 function displayWeatherData(weatherData) {
+  if (measurementFlags.f) {
+    degrees = [weatherData.current.temp_f, " °F"];
+  } else {
+    degrees = [weatherData.current.temp_c, " °C"];
+  }
+
   weatherElements.currentConditions.textContent =
     weatherData.current.condition.text;
 
-  weatherElements.currentTemp.textContent = weatherData.current.temp_f;
+  weatherElements.currentTemp.textContent = degrees[0] + degrees[1];
 
   weatherElements.location.textContent = `${weatherData.location.name}, ${weatherData.location.region}`;
 
@@ -61,5 +69,3 @@ async function getSearchedLocation(value) {
 displayWeatherData(defaultWeather);
 
 export default displayWeatherData;
-
-// set up function to fill in page with weather data, call it again on every search
