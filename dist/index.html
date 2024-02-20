@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>The Weather</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,13 +16,16 @@
     <div class="top-content">
       <div class="left-content">
         <h1 class="current-conditions"></h1>
+        <h3 class="current-temp"></h3>
         <h2 class="location"></h2>
         <h3 class="date"></h3>
-        <h3 class="current-temp"></h3>
         <img src="" class="todays-icon" />
       </div>
       <div class="mid-content">
-        <input type="text" id="search" placeholder="Search Location..." />
+        <div class="search-contents">
+          <input type="text" id="search" placeholder="Search Location..." />
+          <img src="images/magnifier.png" class="searchBtn" />
+        </div>
         <p class="errMsg"></p>
       </div>
       <div class="right-content">
