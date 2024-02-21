@@ -299,13 +299,13 @@ button:hover {
 }
 
 .left-content h1,
-h3,
-h3 {
+.left-content h2,
+.left-content h3 {
   margin: 0;
 }
 
 .current-temp {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .location {
