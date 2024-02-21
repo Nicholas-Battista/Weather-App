@@ -134,6 +134,32 @@ document.querySelector(".daily").addEventListener("click", () => {
   displayDailyForcast(defaultForecast);
 });
 
+document.querySelector(".searchBtn").addEventListener("click", () => {
+  const errmsg = document.querySelector(".errMsg");
+  errmsg.textContent = "";
+  getForecast(document.getElementById("search").value)
+    .then((data) => {
+      document.getElementById("search").value = "";
+      displayDailyForcast(data);
+      previousCast = data;
+      document.querySelector(".hourly").addEventListener("click", () => {
+        const forecastContainer = document.querySelector(".forecast");
+        forecastContainer.innerHTML = "";
+        displayHourlyForecast(data);
+      });
+      document.querySelector(".daily").addEventListener("click", () => {
+        const forecastContainer = document.querySelector(".forecast");
+        forecastContainer.innerHTML = "";
+        displayDailyForcast(data);
+      });
+    })
+    .catch(() => {
+      document.getElementById("search").value = "";
+      errmsg.textContent = "Please enter a valid city";
+      displayDailyForcast(previousCast);
+    });
+});
+
 document.getElementById("search").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     const errmsg = document.querySelector(".errMsg");
@@ -235,7 +261,6 @@ function determineRerun() {
 
 displayDailyForcast(defaultForecast);
 document.querySelector(".current").textContent = "Daily Forecast ";
-// displayHourlyForecast(defaultForecast);
 
 export default displayDailyForcast;
 export { measurementFlags };

@@ -70,6 +70,16 @@ document.getElementById("search").addEventListener("keypress", (event) => {
   }
 });
 
+document.querySelector(".searchBtn").addEventListener("click", () => {
+  getSearchedLocation(document.getElementById("search").value)
+    .then((data) => {
+      displayWeatherData(data);
+    })
+    .catch(() => {
+      console.log("failed");
+    });
+});
+
 async function getSearchedLocation(value) {
   return await getWeather(value);
 }
