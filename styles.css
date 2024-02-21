@@ -56,6 +56,24 @@ body {
   box-shadow: var(--shadow);
 }
 
+.right-info {
+  backdrop-filter: blur(10px);
+  width: 70%;
+  height: 100%;
+  padding: 2rem 1rem 2rem 0;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-radius: 1rem;
+}
+
+.right-info h2 {
+  border-bottom: 1px solid white;
+  margin: 0;
+}
+
 .mid-content {
   display: flex;
   align-items: center;
@@ -92,11 +110,13 @@ body {
 
 .right-content {
   background-color: transparent;
-  backdrop-filter: blur(10px);
   height: 75%;
   width: 18%;
   padding-right: 5%;
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
