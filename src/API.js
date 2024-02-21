@@ -4,7 +4,6 @@ async function getWeather(location) {
     { mode: "cors" }
   );
   const WeatherData = await data.json();
-  console.log(WeatherData);
   return WeatherData;
 }
 
@@ -14,7 +13,6 @@ async function getForecast(location) {
     { mode: "cors" }
   );
   const forecastData = await data.json();
-  console.log(forecastData);
   return forecastData;
 }
 

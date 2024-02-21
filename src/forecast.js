@@ -140,6 +140,7 @@ document.getElementById("search").addEventListener("keypress", (event) => {
     errmsg.textContent = "";
     getForecast(document.getElementById("search").value)
       .then((data) => {
+        document.getElementById("search").value = "";
         displayDailyForcast(data);
         previousCast = data;
         document.querySelector(".hourly").addEventListener("click", () => {
@@ -154,6 +155,7 @@ document.getElementById("search").addEventListener("keypress", (event) => {
         });
       })
       .catch(() => {
+        document.getElementById("search").value = "";
         errmsg.textContent = "Please enter a valid city";
         displayDailyForcast(previousCast);
       });

@@ -4,7 +4,10 @@ import displayForcast from "./forecast";
 import { measurementFlags } from "./forecast";
 
 let defaultWeather = await getWeather("flagstaff");
+console.log(defaultWeather);
 let degrees;
+let feelsLike;
+let wind;
 
 const weatherElements = {
   currentConditions: document.querySelector(".current-conditions"),
@@ -22,8 +25,12 @@ const weatherElements = {
 function displayWeatherData(weatherData) {
   if (measurementFlags.f) {
     degrees = [weatherData.current.temp_f, " °F"];
+    feelsLike = [weatherData.current.feelslike_f, " °F"];
+    wind = [weatherData.current.wind_mph, "mph Wind"];
   } else {
     degrees = [weatherData.current.temp_c, " °C"];
+    feelsLike = [weatherData.current.feelslike_c, " °C"];
+    wind = [weatherData.current.wind_kph, "kph Wind"];
   }
 
   weatherElements.currentConditions.textContent =
@@ -33,10 +40,11 @@ function displayWeatherData(weatherData) {
 
   weatherElements.location.textContent = `${weatherData.location.name}, ${weatherData.location.region}`;
 
-  weatherElements.feelsLike.textContent = weatherData.current.feelslike_f;
-  weatherElements.humid.textContent = weatherData.current.humidity;
-  // weatherElements.precip.textContent = weatherData.current.
-  weatherElements.wind.textContent = weatherData.current.wind_mph;
+  weatherElements.feelsLike.textContent =
+    feelsLike[0] + feelsLike[1] + " Real Feel";
+  weatherElements.humid.textContent =
+    weatherData.current.humidity + "% Humidity";
+  weatherElements.wind.textContent = wind[0] + wind[1];
 
   weatherElements.icon.src = weatherData.current.condition.icon;
 
