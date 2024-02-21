@@ -325,3 +325,64 @@ h3 {
   width: 100px;
   object-fit: cover;
 }
+
+@media screen and (max-width: 999px) {
+  .top-content {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+    width: 100%;
+  }
+
+  .left-content,
+  .mid-content,
+  .right-content {
+    height: 33%;
+    width: 100%;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .left-info,
+  .right-info {
+    font-size: 1rem;
+    padding: 0 5px 0 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .right-info {
+    justify-content: center;
+    gap: 20%;
+    padding: 0;
+  }
+
+  .left-info img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .current-temp,
+  .location,
+  .date,
+  .current-conditions {
+    font-size: 1rem;
+  }
+
+  .right-info h2 {
+    font-size: 1rem;
+  }
+
+  .bottom-content {
+    width: 100%;
+  }
+
+  .forecast {
+    width: 100%;
+    padding: 0;
+  }
+}
