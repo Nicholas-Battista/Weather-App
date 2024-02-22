@@ -165,10 +165,16 @@ document.getElementById("search").addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     const errmsg = document.querySelector(".errMsg");
     errmsg.textContent = "";
+    document
+      .querySelector(".spinner-content")
+      .classList.remove("spinner-inactive");
     getForecast(document.getElementById("search").value)
       .then((data) => {
         document.getElementById("search").value = "";
         displayDailyForcast(data);
+        document
+          .querySelector(".spinner-content")
+          .classList.add("spinner-inactive");
         previousCast = data;
         document.querySelector(".hourly").addEventListener("click", () => {
           const forecastContainer = document.querySelector(".forecast");
