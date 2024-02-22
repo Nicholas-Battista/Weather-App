@@ -138,10 +138,16 @@ document.querySelector(".daily").addEventListener("click", () => {
 document.querySelector(".searchBtn").addEventListener("click", () => {
   const errmsg = document.querySelector(".errMsg");
   errmsg.textContent = "";
+  document
+    .querySelector(".spinner-content")
+    .classList.remove("spinner-inactive");
   getForecast(document.getElementById("search").value)
     .then((data) => {
       document.getElementById("search").value = "";
       displayDailyForcast(data);
+      document
+        .querySelector(".spinner-content")
+        .classList.add("spinner-inactive");
       previousCast = data;
       document.querySelector(".hourly").addEventListener("click", () => {
         const forecastContainer = document.querySelector(".forecast");
@@ -158,6 +164,9 @@ document.querySelector(".searchBtn").addEventListener("click", () => {
       document.getElementById("search").value = "";
       errmsg.textContent = "Please enter a valid city";
       displayDailyForcast(previousCast);
+      document
+        .querySelector(".spinner-content")
+        .classList.add("spinner-inactive");
     });
 });
 
@@ -191,6 +200,9 @@ document.getElementById("search").addEventListener("keypress", (event) => {
         document.getElementById("search").value = "";
         errmsg.textContent = "Please enter a valid city";
         displayDailyForcast(previousCast);
+        document
+          .querySelector(".spinner-content")
+          .classList.add("spinner-inactive");
       });
   }
 });
