@@ -1,10 +1,8 @@
-import { getWeather, getForecast } from "./API";
+import { getWeather } from "./API";
 import { format, parseISO } from "date-fns";
-import displayForcast from "./forecast";
 import { measurementFlags } from "./forecast";
 
 let defaultWeather = await getWeather("flagstaff");
-console.log(defaultWeather);
 let degrees;
 let feelsLike;
 let wind;
@@ -42,8 +40,10 @@ function displayWeatherData(weatherData) {
 
   weatherElements.feelsLike.textContent =
     feelsLike[0] + feelsLike[1] + " Real Feel";
+
   weatherElements.humid.textContent =
     weatherData.current.humidity + "% Humidity";
+
   weatherElements.wind.textContent = wind[0] + wind[1];
 
   weatherElements.icon.src = weatherData.current.condition.icon;

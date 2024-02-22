@@ -9,7 +9,6 @@ function displayDailyForcast(forecastData) {
   const forecastContainer = document.querySelector(".forecast");
   forecastContainer.innerHTML = "";
   forecastData.forecast.forecastday.slice(1).forEach((day) => {
-    console.log(day);
     const card = document.createElement("div");
     card.classList.add("daily-card");
 
@@ -53,9 +52,11 @@ function appendIcon(iconPath) {
 
 function displayHourlyForecast(forecastData) {
   const forecastContainer = document.querySelector(".forecast");
+
   const currentTime = parseInt(
     forecastData.location.localtime.split(" ")[1].slice(0, -3)
   );
+
   let counter = 23;
   const today = forecastData.forecast.forecastday[0].hour;
   const nextDay = forecastData.forecast.forecastday[1].hour;
@@ -63,7 +64,7 @@ function displayHourlyForecast(forecastData) {
   for (let i = currentTime + 1; i <= today.length - 1; i++) {
     counter--;
     const hour = today[i];
-    console.log(hour);
+
     const hourCard = document.createElement("div");
     hourCard.classList.add("card-hour");
 
