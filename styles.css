@@ -123,6 +123,7 @@ input {
   color: black;
   border-radius: 1rem;
   font-size: 0.9rem;
+  width: 80%;
 }
 
 input::placeholder {
@@ -153,7 +154,6 @@ input::placeholder {
   gap: 4rem;
   height: 50%;
   width: 90%;
-  /* flex: 1; */
   box-shadow: inset 0 1px 1px hsl(0deg 0% 0% / 0.075),
     inset 0 2px 2px hsl(0deg 0% 0% / 0.075),
     inset 0 4px 4px hsl(0deg 0% 0% / 0.075),
@@ -396,6 +396,7 @@ button:hover {
   height: 100%;
   width: 100%;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   position: absolute;
   z-index: 99;
 }
